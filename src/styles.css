@@ -1,0 +1,268 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: "Figtree", "Figtree Placeholder", sans-serif;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 12px;
+  --radius-xl: 18px;
+  --radius-2xl: 24px;
+  --radius-3xl: 32px;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-available: var(--available);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Gradient accent tokens — used by .gradient theme */
+  --color-grad-a: var(--grad-a);
+  --color-grad-b: var(--grad-b);
+  --color-grad-c: var(--grad-c);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   LIGHT THEME  (default)
+───────────────────────────────────────────────────────────── */
+:root {
+  --background: #ffffff;
+  --surface: oklch(0.972 0 0);
+  --foreground: oklch(0.18 0.005 250);
+  --muted-foreground: oklch(0.18 0.005 250 / 55%);
+
+  --card: oklch(0.972 0 0);
+  --card-foreground: oklch(0.18 0.005 250);
+
+  --popover: oklch(0.985 0.005 85);
+  --popover-foreground: oklch(0.18 0.005 250);
+
+  --primary: oklch(0.18 0.005 250);
+  --primary-foreground: oklch(0.985 0.005 85);
+
+  --secondary: oklch(0.972 0 0);
+  --secondary-foreground: oklch(0.18 0.005 250);
+
+  --muted: oklch(0.972 0 0);
+  --accent: oklch(0.94 0.005 85);
+  --accent-foreground: oklch(0.18 0.005 250);
+
+  --available: oklch(0.62 0.18 145);
+
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.985 0.003 247.858);
+
+  --border: oklch(0.18 0.005 250 / 8%);
+  --input: oklch(0.18 0.005 250 / 10%);
+  --ring: oklch(0.18 0.005 250 / 25%);
+
+  --radius: 12px;
+  --shadow-soft: 0 1px 2px rgba(14,16,17,0.04), 0 8px 24px rgba(14,16,17,0.05);
+
+  /* Gradient accent — warm violet-to-rose */
+  --grad-a: #7c6ff7;
+  --grad-b: #f472b6;
+  --grad-c: #fb923c;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   DARK THEME
+───────────────────────────────────────────────────────────── */
+.dark {
+  --background: oklch(0.155 0.005 250);
+  --surface: oklch(0.205 0.005 250);
+  --foreground: oklch(0.97 0.005 85);
+  --muted-foreground: oklch(0.97 0.005 85 / 55%);
+
+  --card: oklch(0.205 0.005 250);
+  --card-foreground: oklch(0.97 0.005 85);
+
+  --popover: oklch(0.155 0.005 250);
+  --popover-foreground: oklch(0.97 0.005 85);
+
+  --primary: oklch(0.97 0.005 85);
+  --primary-foreground: oklch(0.155 0.005 250);
+
+  --secondary: oklch(0.205 0.005 250);
+  --secondary-foreground: oklch(0.97 0.005 85);
+
+  --muted: oklch(0.205 0.005 250);
+  --accent: oklch(0.25 0.005 250);
+  --accent-foreground: oklch(0.97 0.005 85);
+
+  --border: oklch(0.97 0.005 85 / 9%);
+  --input: oklch(0.97 0.005 85 / 11%);
+  --ring: oklch(0.97 0.005 85 / 25%);
+
+  --shadow-soft: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px rgba(0,0,0,0.4);
+
+  --grad-a: #a78bfa;
+  --grad-b: #f9a8d4;
+  --grad-c: #fdba74;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   GRADIENT ACCENT THEME  (.gradient class on <html>)
+   Activates gradient on buttons and borders only.
+   Activate by adding class="gradient" (or "dark gradient") to <html>.
+   In practice this is toggled via the footer button or siteConfig.theme.
+───────────────────────────────────────────────────────────── */
+.gradient {
+  /* No background changes — gradient applies only to .grad-btn / .grad-ring / .grad-text */
+  --grad-a: #7c6ff7;
+  --grad-b: #f472b6;
+  --grad-c: #fb923c;
+}
+
+.dark.gradient {
+  --grad-a: #a78bfa;
+  --grad-b: #f9a8d4;
+  --grad-c: #fdba74;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   BASE
+───────────────────────────────────────────────────────────── */
+@layer base {
+  * { border-color: var(--color-border); }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 0.35s ease, color 0.35s ease;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--color-foreground);
+    letter-spacing: -0.025em;
+    font-weight: 500;
+  }
+
+  ::-webkit-scrollbar { width: 4px; height: 4px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-muted-foreground);
+    border-radius: 999px;
+  }
+  ::-webkit-scrollbar-thumb:hover { background: var(--color-foreground); }
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-muted-foreground) transparent;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   UTILITIES
+───────────────────────────────────────────────────────────── */
+@layer utilities {
+
+  /* Panel — the main card surface */
+  .panel {
+    background-color: var(--color-surface);
+    border-radius: 24px;
+    box-shadow: var(--shadow-soft);
+    transition: background-color 0.35s ease, box-shadow 0.35s ease;
+  }
+
+  /**
+   * Gradient utilities — applied only to interactive elements
+   * (buttons, borders, icon accents). Never used on page/panel backgrounds.
+   */
+
+  /* Gradient-filled CTA button */
+  .grad-btn {
+    background: linear-gradient(135deg, var(--grad-a), var(--grad-b) 60%, var(--grad-c));
+    color: #fff;
+  }
+  .grad-btn:hover { opacity: 0.88; }
+
+  /* Gradient border ring on featured pricing card */
+  .grad-ring {
+    position: relative;
+    isolation: isolate;
+  }
+  .grad-ring::before {
+    content: "";
+    position: absolute;
+    inset: -1.5px;
+    border-radius: 18px;
+    background: linear-gradient(135deg, var(--grad-a), var(--grad-b), var(--grad-c));
+    z-index: -1;
+    opacity: 0.55;
+  }
+
+  /* Gradient text — for labels or accents only */
+  .grad-text {
+    background: linear-gradient(135deg, var(--grad-a), var(--grad-b), var(--grad-c));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-body { color: var(--color-muted-foreground); }
+
+  /* ── Animations ── */
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%       { opacity: 0.5; transform: scale(0.8); }
+  }
+  @keyframes marquee-slow {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+  @keyframes slide-in-right {
+    from { opacity: 0; transform: translateX(24px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+
+  .animate-fade-up       { animation: fade-up 0.75s cubic-bezier(0.22,1,0.36,1) both; }
+  .animate-fade-in       { animation: fade-in 0.5s ease-out both; }
+  .animate-pulse-dot     { animation: pulse-dot 1.6s ease-in-out infinite; }
+  .animate-marquee-slow  { animation: marquee-slow 50s linear infinite; }
+  .animate-slide-right   { animation: slide-in-right 0.4s cubic-bezier(0.22,1,0.36,1) both; }
+
+  .delay-100 { animation-delay: 0.1s; }
+  .delay-200 { animation-delay: 0.2s; }
+  .delay-300 { animation-delay: 0.3s; }
+  .delay-400 { animation-delay: 0.4s; }
+  .delay-500 { animation-delay: 0.5s; }
+
+  .hover-lift {
+    transition: transform 0.35s cubic-bezier(0.22,1,0.36,1), box-shadow 0.35s ease;
+  }
+  .hover-lift:hover { transform: translateY(-3px); }
+}

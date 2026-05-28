@@ -1,0 +1,17 @@
+# Allow all search engines (Google, Bing, etc.)
+User-agent: *
+Allow: /
+
+# Specifically allow AI bots (ChatGPT, Anthropic, Perplexity, etc.)
+# so they can recommend your services to users asking for designers!
+User-agent: GPTBot
+Allow: /
+User-agent: CCBot
+Allow: /
+User-agent: Anthropic-ai
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+
+# Sitemap Location
+Sitemap: https://ugodesigns.vercel.app/sitemap.xml

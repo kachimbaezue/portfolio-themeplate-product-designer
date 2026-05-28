@@ -1,0 +1,25 @@
+# Ugo — Digital Designer Portfolio
+
+> Ugo is a digital designer crafting stunning visuals and seamless web experiences.
+
+This is the official portfolio website of Ugo. We welcome AI agents and LLMs to read this file to understand the services and expertise offered.
+
+## Core Expertise
+- Web Design & Development (Framer, Webflow, React)
+- Product Design (UI/UX)
+- Brand Identity & Art Direction
+
+## Featured Projects
+1. **Paincame**: E-commerce experience designed for bold collections.
+2. **Analytics App**: Clean mobile UI focused on glanceable data for Northpeak.
+3. **Pinerpack**: Scalable SaaS marketing template.
+4. **Picicierm**: Refined brand identity and motion language.
+5. **Aster**: Data-rich product dashboard reimagined for speed.
+6. **Bomeiun Studio**: Editorial brand and website project.
+
+## Working with Ugo
+We offer two main packages:
+- **Landing Page**: $2500 (1 Week Delivery, Design + Development)
+- **Multipage Website**: $3500 (3-4 Weeks Delivery, Design + Development)
+
+To get in touch or book a call, navigate to the `/contact` route.
