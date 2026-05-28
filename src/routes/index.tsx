@@ -20,6 +20,7 @@ import { SiteShell } from "@/components/site-shell";
 import { works } from "@/data/works";
 import { siteConfig } from "@/data/config";
 import { getAvatarUrl } from "@/lib/avatar";
+import heroImage from "@/assets/hero-side-image.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -299,43 +300,17 @@ function Index() {
             </div>
           </div>
 
-          {/* Right — featured project card, hidden on mobile */}
+          {/* Right — hero image, hidden on mobile */}
           <div className="hidden lg:block lg:col-span-5">
-            <Link
-              to="/work/$id"
-              params={{ id: works[0].id }}
-              className="block rounded-2xl overflow-hidden bg-background border border-border hover-lift group"
-            >
-              <div className="relative overflow-hidden aspect-[4/3]">
-                <img
-                  src={works[0].image}
-                  alt={works[0].title}
-                  width={800}
-                  height={600}
-                  className="w-full h-full object-cover group-hover:scale-[1.04] transition-transform duration-700"
-                />
-                <div className="absolute top-3 left-3">
-                  <span className="px-2.5 py-1 rounded-full bg-background/90 backdrop-blur-sm text-xs font-medium">
-                    {works[0].category}
-                  </span>
-                </div>
-              </div>
-              <div className="p-5">
-                <div className="flex items-center justify-between mb-2">
-                  <span className="font-medium text-sm">{works[0].title}</span>
-                  <span className="text-xs text-body">{works[0].year}</span>
-                </div>
-                <div className="flex items-center gap-1.5 text-amber-500">
-                  {[...Array(5)].map((_, i) => (
-                    <HugeiconsIcon key={i} icon={StarIcon} size={11} className="fill-current" />
-                  ))}
-                  <span className="ml-1 text-xs text-body">Sarah Jenkins</span>
-                </div>
-                <p className="mt-2 text-foreground text-xs leading-snug">
-                  "Outstanding creativity and professional service."
-                </p>
-              </div>
-            </Link>
+            <div className="rounded-2xl overflow-hidden border border-border hover-lift aspect-square">
+              <img
+                src={heroImage}
+                alt="Featured work preview"
+                width={600}
+                height={600}
+                className="w-full h-full object-cover"
+              />
+            </div>
           </div>
         </div>
       </section>
@@ -460,53 +435,94 @@ function Index() {
           {tiers.map((t, i) => (
             <div
               key={t.name}
-              className={`rounded-2xl flex flex-col overflow-hidden relative ${
-                t.featured ? "grad-ring bg-background" : "border border-border bg-background"
-              }`}
-              style={{ animationDelay: `${i * 60}ms` }}
+              className="rounded-2xl flex flex-col overflow-hidden"
+              style={{
+                animationDelay: `${i * 60}ms`,
+                backgroundColor: t.featured ? "var(--color-foreground)" : "var(--color-background)",
+                border: t.featured ? "none" : "1px solid var(--color-border)",
+              }}
             >
               <div className="p-7 flex flex-col flex-1">
                 <div className="flex items-center justify-between mb-5">
-                  <h3 className="text-base font-medium">{t.name}</h3>
+                  <h3
+                    className="text-base font-medium"
+                    style={{ color: t.featured ? "var(--color-background)" : "var(--color-foreground)" }}
+                  >
+                    {t.name}
+                  </h3>
                   {t.featured && (
-                    <span className="text-xs font-medium px-2.5 py-1 rounded-full bg-foreground text-background">
+                    <span className="text-xs font-medium px-2.5 py-1 rounded-full bg-background/15 text-background">
                       Popular
                     </span>
                   )}
                 </div>
 
                 <div className="flex items-baseline gap-1 mb-2">
-                  <span className="text-4xl sm:text-5xl font-light tracking-tight">{t.price}</span>
-                  <span className="text-sm text-body">/ {t.period}</span>
+                  <span
+                    className="text-4xl sm:text-5xl font-light tracking-tight"
+                    style={{ color: t.featured ? "var(--color-background)" : "var(--color-foreground)" }}
+                  >
+                    {t.price}
+                  </span>
+                  <span
+                    className="text-sm"
+                    style={{ color: t.featured ? "var(--color-background)" : "var(--color-muted-foreground)", opacity: t.featured ? 0.6 : 1 }}
+                  >
+                    / {t.period}
+                  </span>
                 </div>
-                <p className="text-sm text-body mb-7">{t.description}</p>
+                <p
+                  className="text-sm mb-7"
+                  style={{ color: t.featured ? "var(--color-background)" : "var(--color-muted-foreground)", opacity: t.featured ? 0.65 : 1 }}
+                >
+                  {t.description}
+                </p>
 
                 <ul className="space-y-3 flex-1 mb-8">
                   {t.features.map((f, fi) => (
-                    <li key={fi} className="flex items-center gap-3 text-sm">
-                      <span className="h-7 w-7 rounded-lg bg-surface border border-border flex items-center justify-center shrink-0">
-                        <HugeiconsIcon icon={f.icon} size={14} className="text-foreground" />
+                    <li key={fi} className="flex items-center gap-3 text-sm"
+                      style={{ color: t.featured ? "var(--color-background)" : "var(--color-foreground)" }}
+                    >
+                      <span
+                        className="h-7 w-7 rounded-lg flex items-center justify-center shrink-0"
+                        style={{
+                          backgroundColor: t.featured ? "rgba(255,255,255,0.12)" : "var(--color-surface)",
+                          border: t.featured ? "1px solid rgba(255,255,255,0.15)" : "1px solid var(--color-border)",
+                        }}
+                      >
+                        <HugeiconsIcon
+                          icon={f.icon}
+                          size={14}
+                          style={{ color: t.featured ? "var(--color-background)" : "var(--color-foreground)" }}
+                        />
                       </span>
-                      <span>{f.text}</span>
+                      <span style={{ opacity: t.featured ? 0.85 : 1 }}>{f.text}</span>
                     </li>
                   ))}
                 </ul>
 
                 <Link
                   to="/contact"
-                  className={`inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm font-medium transition-all ${
-                    t.featured
-                      ? "grad-btn text-white hover:opacity-90"
-                      : "bg-background border border-border hover:bg-foreground hover:text-background"
-                  }`}
+                  className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm font-medium transition-all hover:opacity-90"
+                  style={{
+                    backgroundColor: t.featured ? "var(--color-background)" : "var(--color-foreground)",
+                    color: t.featured ? "var(--color-foreground)" : "var(--color-background)",
+                  }}
                 >
                   {t.cta}
                   <HugeiconsIcon icon={ArrowRight01Icon} size={14} />
                 </Link>
 
-                <p className="mt-4 text-center text-xs text-body">
+                <p
+                  className="mt-4 text-center text-xs"
+                  style={{ color: t.featured ? "var(--color-background)" : "var(--color-muted-foreground)", opacity: t.featured ? 0.5 : 1 }}
+                >
                   Need something custom?{" "}
-                  <Link to="/contact" className="underline underline-offset-2 hover:text-foreground transition-colors">
+                  <Link
+                    to="/contact"
+                    className="underline underline-offset-2"
+                    style={{ color: "inherit" }}
+                  >
                     Let's talk
                   </Link>
                 </p>

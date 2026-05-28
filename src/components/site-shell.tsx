@@ -13,7 +13,6 @@ import {
   DribbbleIcon,
   Mail01Icon,
   ArrowRight01Icon,
-  PaintBoardIcon,
 } from "@hugeicons/core-free-icons";
 import { siteConfig } from "@/data/config";
 
@@ -32,15 +31,13 @@ const socialIcons = [
   { key: "dribbble", icon: DribbbleIcon,    label: "Dribbble"   },
 ] as const;
 
-type ThemeMode = "light" | "dark" | "gradient" | "dark gradient";
+type ThemeMode = "light" | "dark";
 
 /* ─── Theme hook ─────────────────────────────────────────────── */
 function applyTheme(mode: ThemeMode) {
   const html = document.documentElement;
-  html.classList.remove("dark", "gradient");
-  if (mode === "dark")             html.classList.add("dark");
-  if (mode === "gradient")         html.classList.add("gradient");
-  if (mode === "dark gradient") { html.classList.add("dark"); html.classList.add("gradient"); }
+  html.classList.remove("dark");
+  if (mode === "dark") html.classList.add("dark");
 }
 
 function useTheme() {
@@ -48,42 +45,27 @@ function useTheme() {
 
   useEffect(() => {
     const stored = (typeof window !== "undefined" && localStorage.getItem("theme")) as ThemeMode | null;
-    const initial: ThemeMode = stored ?? siteConfig.theme ?? "light";
+    const initial: ThemeMode = stored ?? (siteConfig.theme === "dark" ? "dark" : "light");
     setTheme(initial);
     applyTheme(initial);
   }, []);
 
   const toggleDark = () => {
     setTheme((prev) => {
-      const next: ThemeMode =
-        prev === "light"          ? "dark"          :
-        prev === "dark"           ? "light"         :
-        prev === "gradient"       ? "dark gradient" : "gradient";
+      const next: ThemeMode = prev === "light" ? "dark" : "light";
       applyTheme(next);
       try { localStorage.setItem("theme", next); } catch {}
       return next;
     });
   };
 
-  const toggleGradient = () => {
-    setTheme((prev) => {
-      const next: ThemeMode =
-        prev === "light"          ? "gradient"      :
-        prev === "gradient"       ? "light"         :
-        prev === "dark"           ? "dark gradient" : "dark";
-      applyTheme(next);
-      try { localStorage.setItem("theme", next); } catch {}
-      return next;
-    });
-  };
-
-  return { theme, toggleDark, toggleGradient };
+  return { theme, toggleDark };
 }
 
 /* ─── Dark / Light toggle pill ──────────────────────────────── */
 function ThemeToggle() {
   const { theme, toggleDark } = useTheme();
-  const isDark = theme === "dark" || theme === "dark gradient";
+  const isDark = theme === "dark";
   return (
     <button
       onClick={toggleDark}
@@ -187,9 +169,6 @@ function MenuPanel({ onClose }: { onClose: () => void }) {
 
 /* ─── Footer ─────────────────────────────────────────────────── */
 function Footer() {
-  const { theme, toggleGradient } = useTheme();
-  const isGradient = theme === "gradient" || theme === "dark gradient";
-
   const activeSocials = socialIcons.filter(
     (s) => siteConfig.socials[s.key as keyof typeof siteConfig.socials]
   );
@@ -329,27 +308,6 @@ function Footer() {
               </li>
             )}
           </ul>
-
-          {/* Gradient accent toggle */}
-          <button
-            onClick={toggleGradient}
-            className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-medium transition-all"
-            style={{
-              backgroundColor: isGradient
-                ? "oklch(0.97 0.005 85 / 15%)"
-                : "oklch(0.97 0.005 85 / 7%)",
-              color: isGradient
-                ? "oklch(0.97 0.005 85 / 90%)"
-                : "oklch(0.97 0.005 85 / 45%)",
-              border: isGradient
-                ? "1px solid oklch(0.97 0.005 85 / 20%)"
-                : "1px solid oklch(0.97 0.005 85 / 10%)",
-            }}
-            aria-label="Toggle gradient accent"
-          >
-            <HugeiconsIcon icon={PaintBoardIcon} size={13} />
-            {isGradient ? "Gradient on" : "Try gradient"}
-          </button>
         </div>
       </div>
 

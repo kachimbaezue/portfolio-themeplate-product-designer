@@ -49,10 +49,8 @@ export const siteConfig = {
   /**
    * Visual theme applied to <html>.
    * Options:
-   *   "light"            — clean white (default)
-   *   "dark"             — deep charcoal
-   *   "gradient"         — light + soft colour wash
-   *   "dark gradient"    — dark + colour wash
+   *   "light"   — clean white (default)
+   *   "dark"    — deep charcoal
    */
-  theme: "light" as "light" | "dark" | "gradient" | "dark gradient",
+  theme: "light" as "light" | "dark",
 };

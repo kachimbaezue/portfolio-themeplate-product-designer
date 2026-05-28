@@ -35,11 +35,6 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-
-  /* Gradient accent tokens — used by .gradient theme */
-  --color-grad-a: var(--grad-a);
-  --color-grad-b: var(--grad-b);
-  --color-grad-c: var(--grad-c);
 }
 
 /* ─────────────────────────────────────────────────────────────
@@ -78,11 +73,6 @@
 
   --radius: 12px;
   --shadow-soft: 0 1px 2px rgba(14,16,17,0.04), 0 8px 24px rgba(14,16,17,0.05);
-
-  /* Gradient accent — warm violet-to-rose */
-  --grad-a: #7c6ff7;
-  --grad-b: #f472b6;
-  --grad-c: #fb923c;
 }
 
 /* ─────────────────────────────────────────────────────────────
@@ -115,29 +105,6 @@
   --ring: oklch(0.97 0.005 85 / 25%);
 
   --shadow-soft: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px rgba(0,0,0,0.4);
-
-  --grad-a: #a78bfa;
-  --grad-b: #f9a8d4;
-  --grad-c: #fdba74;
-}
-
-/* ─────────────────────────────────────────────────────────────
-   GRADIENT ACCENT THEME  (.gradient class on <html>)
-   Activates gradient on buttons and borders only.
-   Activate by adding class="gradient" (or "dark gradient") to <html>.
-   In practice this is toggled via the footer button or siteConfig.theme.
-───────────────────────────────────────────────────────────── */
-.gradient {
-  /* No background changes — gradient applies only to .grad-btn / .grad-ring / .grad-text */
-  --grad-a: #7c6ff7;
-  --grad-b: #f472b6;
-  --grad-c: #fb923c;
-}
-
-.dark.gradient {
-  --grad-a: #a78bfa;
-  --grad-b: #f9a8d4;
-  --grad-c: #fdba74;
 }
 
 /* ─────────────────────────────────────────────────────────────
@@ -188,41 +155,6 @@
     border-radius: 24px;
     box-shadow: var(--shadow-soft);
     transition: background-color 0.35s ease, box-shadow 0.35s ease;
-  }
-
-  /**
-   * Gradient utilities — applied only to interactive elements
-   * (buttons, borders, icon accents). Never used on page/panel backgrounds.
-   */
-
-  /* Gradient-filled CTA button */
-  .grad-btn {
-    background: linear-gradient(135deg, var(--grad-a), var(--grad-b) 60%, var(--grad-c));
-    color: #fff;
-  }
-  .grad-btn:hover { opacity: 0.88; }
-
-  /* Gradient border ring on featured pricing card */
-  .grad-ring {
-    position: relative;
-    isolation: isolate;
-  }
-  .grad-ring::before {
-    content: "";
-    position: absolute;
-    inset: -1.5px;
-    border-radius: 18px;
-    background: linear-gradient(135deg, var(--grad-a), var(--grad-b), var(--grad-c));
-    z-index: -1;
-    opacity: 0.55;
-  }
-
-  /* Gradient text — for labels or accents only */
-  .grad-text {
-    background: linear-gradient(135deg, var(--grad-a), var(--grad-b), var(--grad-c));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
   }
 
   .text-body { color: var(--color-muted-foreground); }
